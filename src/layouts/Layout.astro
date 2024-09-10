@@ -1,4 +1,6 @@
 ---
+import { AnimatePresence } from 'framer-motion';
+
 interface Props {
 	title: string;
 }
@@ -21,20 +23,44 @@ const { title } = Astro.props;
 	</body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--bg-color: #13151a;
+		}
+
+		.theme-b {
+			background: #447;
+			color: #bbd;
+		}
+
 	}
+	@media (prefers-color-scheme: light) {
+		:root {
+			--bg-color: #f0f0f0;
+		}
+		.theme-b {
+			background: #753;
+			color: #dcb;
+		}
+	}
+	* {
+		box-sizing: border-box;
+		position: relative;
+		min-width: 0;
+	}
+	body {
+		min-height: 100dvh;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		text-wrap: balance;
+	}
+
+	p {
+	 text-wrap: pretty;	
+	}
+
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
+		background-color: var(--bg-color);
 	}
 	code {
 		font-family:
