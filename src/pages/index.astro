@@ -1,13 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CountdownAstro from '../components/countdown-astro.astro';
+
 ---
 
 <Layout title="Welcome to Astro.">
-	<main >
-		<div class="theme-b">
-			<h2>Countdown Timer</h2>
-			<p>00:00:00</p>
-		</div>
+	<main>
+		<CountdownAstro />
 	</main>
 </Layout>
 
@@ -21,15 +20,5 @@ import Layout from '../layouts/Layout.astro';
 		align-items: center;
 	}
 
-	.theme-b {
-		border: 1px solid #fff;
-		display: flex;
-		flex-direction: column;
-		width: 70dvh;
-		height: 50dvh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 2rem;
-	}	
+	
 </style>

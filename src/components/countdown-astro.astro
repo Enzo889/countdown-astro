@@ -1,0 +1,15 @@
+<main>
+    <button>Click me</button>
+    <p>You clicked: 0</p>
+</main>
+
+<script>
+    let click = 0;
+    const button = document.querySelector('button') as HTMLButtonElement;
+    const p = document.querySelector('p') as HTMLParagraphElement;
+
+    button.addEventListener('click', () => {
+        click++;
+        p.textContent = `You clicked: ${click}`;
+    });
+</script>
