@@ -1,15 +1,103 @@
-<main>
-    <button>Click me</button>
-    <p>You clicked: 0</p>
+<main class="theme-b">
+    <div>
+        <p id="countdown">00:01:00</p>
+    </div>
+    <div>
+        <button class="start">start</button>
+        <button class="restart">restart</button>
+    </div>
+    <div>
+        <div>
+            <label for="hours">hours</label>
+            <input type="range" name="hours" id="hours" min="0" max="100" value="0">
+            <label for="minutes">minutes</label>
+            <input type="range" name="minutes" id="minutes" min="0" max="59" value="0">
+            <label for="seconds">seconds</label>
+            <input type="range" name="seconds" id="seconds" min="0" max="59" value="0">
+        </div>
+    </div>
 </main>
 
 <script>
-    let click = 0;
-    const button = document.querySelector('button') as HTMLButtonElement;
-    const p = document.querySelector('p') as HTMLParagraphElement;
 
-    button.addEventListener('click', () => {
-        click++;
-        p.textContent = `You clicked: ${click}`;
-    });
+    const seconds = document.getElementById('seconds') as HTMLInputElement;
+    const minutes = document.getElementById('minutes') as HTMLInputElement;
+    const hours = document.getElementById('hours') as HTMLInputElement;
+    const countdown = document.getElementById('countdown') as HTMLParagraphElement;
+    const start = document.querySelector('.start') as HTMLButtonElement;
+    const restart = document.querySelector('.restart') as HTMLButtonElement;
+
+
+    let totalSeconds = 60; // 1 minuto en segundos
+    let isRunning = false;
+    let countdownInterval: number;
+
+function startCountdown() {
+    if (!isRunning) {
+        isRunning = true;
+        countdown.innerText = formatTime(totalSeconds);
+        start.innerText = 'stop';
+
+        countdownInterval = setInterval(() => {
+            if (totalSeconds > 0) {
+                totalSeconds--;
+                countdown.innerText = formatTime(totalSeconds);
+            } else {
+                clearInterval(countdownInterval);
+                isRunning = false; // Reiniciar estado al finalizar
+                start.innerText = 'start'; // Cambiar el texto del botón
+            }
+        }, 1000);
+    } else {
+        clearInterval(countdownInterval);
+        isRunning = false; // Pausar el countdown
+        start.innerText = 'start'; // Cambiar el texto del botón
+    }
+}
+
+
+
+function updateCountdownDisplay() {
+    const hoursValue = parseInt(hours.value) || 0;
+    const minutesValue = parseInt(minutes.value) || 0;
+    const secondsValue = parseInt(seconds.value) || 0;
+
+    totalSeconds = (hoursValue * 3600) + (minutesValue * 60) + secondsValue; // Calcular total en segundos
+    countdown.innerText = formatTime(totalSeconds); // Actualizar el display
+}
+
+function restartCountdown() {
+    totalSeconds = 60; // Reiniciar a 1 minuto
+    countdown.innerText = formatTime(totalSeconds); // Actualizar el display
+    if (isRunning) {
+        start.innerText = 'stop';
+    } else {
+        start.innerText = 'start';
+    }
+}
+
+function formatTime(seconds: number) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+
+    // Asegurar que los minutos y segundos tengan siempre dos dígitos
+    const formattedHours = hours < 10 ? `0${hours}` : hours;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const formattedSeconds = secs < 10 ? `0${secs}` : secs;
+
+    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+}
+
+start.addEventListener('click', startCountdown);    
+hours.addEventListener('input', updateCountdownDisplay);
+minutes.addEventListener('input', updateCountdownDisplay);
+seconds.addEventListener('input', updateCountdownDisplay);
+restart.addEventListener('click', restartCountdown);
+
+    
 </script>
+
+<style>
+   
+</style>
