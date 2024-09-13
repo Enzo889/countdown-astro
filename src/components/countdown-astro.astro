@@ -175,6 +175,14 @@ if ("documentPictureInPicture" in window) {
 </script>
 
 <style>
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        background-color: #00000033;
+        padding: 1rem;
+        border-radius: 1rem;
+    }
     .container-element {
         font-family: monospace, sans-serif;
         color: white;
@@ -225,7 +233,7 @@ if ("documentPictureInPicture" in window) {
 
             &::-webkit-slider-runnable-track {
                 appearance: none;
-                background-color: crimson;
+                background-color: #447;
                 border-radius: 2rem;
             }
 
@@ -238,6 +246,20 @@ if ("documentPictureInPicture" in window) {
                 border-radius: 50%;
             }
             
+        }
+    }
+
+    @media(max-width: 350px) {
+        .container-element {
+            padding: 3rem 0 3rem 0;
+
+            & p {
+                font-size: 1.8rem;
+            }
+
+            & button {
+                padding: 0.5rem 1rem;
+            }
         }
     }
 </style>
