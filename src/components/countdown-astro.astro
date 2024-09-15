@@ -16,6 +16,7 @@ import Restore from './icons/restore.astro';
         <button class="pip-btn"> <Pip /> </button>
     </div>
 </main>
+<div id="pip-message" style="display: none; color: yellow;">Estás en modo PiP</div>
     <div class="time-controls">
         <label for="hours">Hours</label>
         <input type="range" name="hours" id="hours" min="0" max="100" value="0">
@@ -115,6 +116,8 @@ if ("documentPictureInPicture" in window) {
         timerContainer = timer.parentNode;
         timerContainer.classList.add("pip");
 
+        document.getElementById('pip-message')!.style.display = 'block';
+
         const pipOptions = {
             initialAspectRatio: timer.clientWidth / timer.clientHeight,
             lockAspectRatio: true,
@@ -154,6 +157,10 @@ if ("documentPictureInPicture" in window) {
         const timer = pipWindow.document.querySelector(".container-element");
         timerContainer.append(timer);
         timerContainer.classList.remove("pip");
+
+        document.getElementById('pip-message')!.style.display = 'none';
+
+
         pipWindow.close();
         pipWindow = null;
         timerContainer = null;
@@ -182,6 +189,8 @@ if ("documentPictureInPicture" in window) {
         background-color: #00000033;
         padding: 1rem;
         border-radius: 1rem;
+        position: relative ;
+        min-width: 350px;
     }
     .container-element {
         font-family: monospace, sans-serif;
