@@ -1,96 +1,132 @@
 ---
-import Start from './icons/play.astro';
-import Pip from './icons/pip.astro';
-import Restore from './icons/restore.astro';
+import Start from "./icons/play.astro";
+import Pip from "./icons/pip.astro";
+import Restore from "./icons/restore.astro";
 ---
 
 <div class="main-container">
-    <div>
-
-        
-        <main class="theme-b container-element">
-    <div>
+  <div>
+    <main class="theme-b container-element">
+      <div>
         <p id="countdown">00:01:00</p>
-    </div>
-    <div>
+      </div>
+      <div>
         <button class="start"> <Start /> </button>
         <button class="restart"> <Restore /> </button>
         <button class="pip-btn"> <Pip /> </button>
+      </div>
+    </main>
+    <div
+      id="pip-message"
+      class="hidden text-yellow-500 text-center text-2xl font-mono h-40"
+    >
+      <p class="p-6 my-11 rounded-2xl border bg-black/45 border-yellow-500">
+        Estás en modo PiP
+      </p>
     </div>
-</main> 
-<div id="pip-message" class="hidden text-yellow-500 text-center text-2xl font-mono h-40"> <p class="p-6 my-11 rounded-2xl border  bg-black/45 border-yellow-500">Estás en modo PiP</p></div>
-</div>
-    <div class="time-controls">
-        <label for="hours">Hours</label>
-        <input type="range" name="hours" id="hours" min="0" max="100" value="0">
-        <label for="minutes">Minutes</label>
-        <input type="range" name="minutes" id="minutes" min="0" max="59" value="0">
-        <label for="seconds">Seconds</label>
-        <input type="range" name="seconds" id="seconds" min="0" max="59" value="0">
-    </div>
+  </div>
+  <div class="time-controls">
+    <label for="hours">Hours</label>
+    <input type="range" name="hours" id="hours" min="0" max="100" value="0" />
+    <label for="minutes">Minutes</label>
+    <input
+      type="range"
+      name="minutes"
+      id="minutes"
+      min="0"
+      max="59"
+      value="0"
+    />
+    <label for="seconds">Seconds</label>
+    <input
+      type="range"
+      name="seconds"
+      id="seconds"
+      min="0"
+      max="59"
+      value="0"
+    />
+  </div>
+  <div class="alarm">
+    <select name="alarm" id="alarm">
+      <option value="alarm-no1.mp3">alarm 1</option>
+      <option value="military_alarm-6380">alarm 2</option>
+      <option value="police-6007">alarm 3</option>
+      <option value="alarm-no4.mp3">alarm 4</option>
+      <option value="alarm-no5.mp3">alarm 5</option>
+      <option value="alarm-no6.mp3">alarm 6</option>
+      <option value="alarm-no7.mp3">alarm 7</option>
+      <option value="alarm-no8.mp3">alarm 8</option>
+    </select>
+  </div>
 </div>
 
 <script>
-    
-    const seconds = document.getElementById('seconds') as HTMLInputElement;
-    const minutes = document.getElementById('minutes') as HTMLInputElement;
-    const hours = document.getElementById('hours') as HTMLInputElement;
-    const countdown = document.getElementById('countdown') as HTMLParagraphElement;
-    const start = document.querySelector('.start') as HTMLButtonElement;
-    const restart = document.querySelector('.restart') as HTMLButtonElement;
-    const pipBtn = document.querySelector('.pip-btn') as HTMLButtonElement;
-    const container = document.querySelector('.container-element') as HTMLDivElement;
+  const seconds = document.getElementById("seconds") as HTMLInputElement;
+  const minutes = document.getElementById("minutes") as HTMLInputElement;
+  const hours = document.getElementById("hours") as HTMLInputElement;
+  const countdown = document.getElementById(
+    "countdown"
+  ) as HTMLParagraphElement;
+  const start = document.querySelector(".start") as HTMLButtonElement;
+  const restart = document.querySelector(".restart") as HTMLButtonElement;
+  const pipBtn = document.querySelector(".pip-btn") as HTMLButtonElement;
+  const container = document.querySelector(
+    ".container-element"
+  ) as HTMLDivElement;
 
+  let totalSeconds = 60; // 1 minuto en segundos
+  let isRunning = false;
+  let countdownInterval: number;
 
-    let totalSeconds = 60; // 1 minuto en segundos
-    let isRunning = false;
-    let countdownInterval: number;
-
-function startCountdown() {
+  function startCountdown() {
     if (!isRunning) {
-        isRunning = true;
-        countdown.innerText = formatTime(totalSeconds);
-        start.innerHTML = `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-player-pause"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /></svg>`;
+      isRunning = true;
+      countdown.innerText = formatTime(totalSeconds);
+      start.innerHTML = `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-player-pause"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /></svg>`;
 
-        countdownInterval = setInterval(() => {
-            if (totalSeconds > 0) {
-                totalSeconds--;
-                countdown.innerText = formatTime(totalSeconds);
-            } else {
-                clearInterval(countdownInterval);
-                isRunning = false; // Reiniciar estado al finalizar
-                start.innerHTML = '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 4v16l13 -8z" /></svg>'; // Cambiar el texto del botón
-            }
-        }, 1000);
+      countdownInterval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          countdown.innerText = formatTime(totalSeconds);
+        } else {
+          clearInterval(countdownInterval);
+          isRunning = false; // Reiniciar estado al finalizar
+          playAlarm(); //reproducir alarma
+          start.innerHTML =
+            '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 4v16l13 -8z" /></svg>'; // Cambiar el texto del botón
+        }
+      }, 1000);
     } else {
-        clearInterval(countdownInterval);
-        isRunning = false; // Pausar el countdown
-        start.innerHTML = '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 4v16l13 -8z" /></svg>'; // Cambiar el texto del botón
+      clearInterval(countdownInterval);
+      isRunning = false; // Pausar el countdown
+      start.innerHTML =
+        '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 4v16l13 -8z" /></svg>'; // Cambiar el texto del botón
     }
-}
+  }
 
-
-
-function updateCountdownDisplay() {
+  function updateCountdownDisplay() {
     const hoursValue = parseInt(hours.value) || 0;
     const minutesValue = parseInt(minutes.value) || 0;
     const secondsValue = parseInt(seconds.value) || 0;
 
-    totalSeconds = (hoursValue * 3600) + (minutesValue * 60) + secondsValue; // Calcular total en segundos
+    totalSeconds = hoursValue * 3600 + minutesValue * 60 + secondsValue; // Calcular total en segundos
     countdown.innerText = formatTime(totalSeconds); // Actualizar el display
-}
+  }
 
-function restartCountdown() {
+  function restartCountdown() {
     totalSeconds = 60; // Reiniciar a 1 minuto
     countdown.innerText = formatTime(totalSeconds); // Actualizar el display
     if (isRunning) {
-        start.innerHTML = '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-player-pause"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /></svg>  ';
+      start.innerHTML =
+        '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-player-pause"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /></svg>  ';
     } else {
-        start.innerHTML = '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 4v16l13 -8z" /></svg> ';
+      start.innerHTML =
+        '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 4v16l13 -8z" /></svg> ';
     }
-}
+  }
 
-function formatTime(seconds: number) {
+  function formatTime(seconds: number) {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
@@ -101,180 +137,199 @@ function formatTime(seconds: number) {
     const formattedSeconds = secs < 10 ? `0${secs}` : secs;
 
     return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-}
+  }
 
+  start.addEventListener("click", startCountdown);
+  hours.addEventListener("input", updateCountdownDisplay);
+  minutes.addEventListener("input", updateCountdownDisplay);
+  seconds.addEventListener("input", updateCountdownDisplay);
+  restart.addEventListener("click", restartCountdown);
 
-start.addEventListener('click', startCountdown);    
-hours.addEventListener('input', updateCountdownDisplay);
-minutes.addEventListener('input', updateCountdownDisplay);
-seconds.addEventListener('input', updateCountdownDisplay);
-restart.addEventListener('click', restartCountdown);
-
-if ("documentPictureInPicture" in window) {
+  if ("documentPictureInPicture" in window) {
     let timerContainer: any = null;
     let pipWindow: any = null;
 
     async function enterPiP() {
-        const timer = container; // Usar el elemento de cuenta regresiva
-        timerContainer = timer.parentNode;
-        timerContainer.classList.add("pip");
+      const timer = container; // Usar el elemento de cuenta regresiva
+      timerContainer = timer.parentNode;
+      timerContainer.classList.add("pip");
 
-        document.getElementById('pip-message')!.style.display = 'block';
+      document.getElementById("pip-message")!.style.display = "block";
 
-        const pipOptions = {
-            initialAspectRatio: timer.clientWidth / timer.clientHeight,
-            lockAspectRatio: true,
-            copyStyleSheets: true,
-        };
+      const pipOptions = {
+        initialAspectRatio: timer.clientWidth / timer.clientHeight,
+        lockAspectRatio: true,
+        copyStyleSheets: true,
+      };
 
-        pipWindow = await documentPictureInPicture.requestWindow(pipOptions);
+      pipWindow = await documentPictureInPicture.requestWindow(pipOptions);
 
-        // Copiar hojas de estilo
-        [...document.styleSheets].forEach((styleSheet) => {
-            try {
-                const cssRules = [...styleSheet.cssRules].map((rule) => rule.cssText).join("");
-                const style = document.createElement("style");
-                style.textContent = cssRules;
-                pipWindow.document.head.appendChild(style);
-            } catch (e) {
-                const link = document.createElement("link");
-                link.rel = "stylesheet";
-                link.type = styleSheet.type;
-                link.media = styleSheet.media.toString();
-                link.href = styleSheet.href as string;
-                pipWindow.document.head.appendChild(link);
-            }
-        });
+      // Copiar hojas de estilo
+      [...document.styleSheets].forEach((styleSheet) => {
+        try {
+          const cssRules = [...styleSheet.cssRules]
+            .map((rule) => rule.cssText)
+            .join("");
+          const style = document.createElement("style");
+          style.textContent = cssRules;
+          pipWindow.document.head.appendChild(style);
+        } catch (e) {
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.type = styleSheet.type;
+          link.media = styleSheet.media.toString();
+          link.href = styleSheet.href as string;
+          pipWindow.document.head.appendChild(link);
+        }
+      });
 
-        // Agregar el temporizador a la ventana PiP
-        pipWindow.document.body.append(timer);
+      // Agregar el temporizador a la ventana PiP
+      pipWindow.document.body.append(timer);
 
-        // Escuchar el evento de cierre de PiP
-        pipWindow.addEventListener("unload", onLeavePiP.bind(pipWindow), { once: true });
+      // Escuchar el evento de cierre de PiP
+      pipWindow.addEventListener("unload", onLeavePiP.bind(pipWindow), {
+        once: true,
+      });
     }
 
     function onLeavePiP(this: any) {
-        if (this !== pipWindow) {
-            return;
-        }
-        const timer = pipWindow.document.querySelector(".container-element");
-        timerContainer.append(timer);
-        timerContainer.classList.remove("pip");
+      if (this !== pipWindow) {
+        return;
+      }
+      const timer = pipWindow.document.querySelector(".container-element");
+      timerContainer.append(timer);
+      timerContainer.classList.remove("pip");
 
-        document.getElementById('pip-message')!.style.display = 'none';
+      document.getElementById("pip-message")!.style.display = "none";
 
-
-        pipWindow.close();
-        pipWindow = null;
-        timerContainer = null;
+      pipWindow.close();
+      pipWindow = null;
+      timerContainer = null;
     }
 
     pipBtn.addEventListener("click", () => {
-        if (!pipWindow) {
-            enterPiP();
-        } else {
-            onLeavePiP.bind(pipWindow)();
-        }
+      if (!pipWindow) {
+        enterPiP();
+      } else {
+        onLeavePiP.bind(pipWindow)();
+      }
     });
-} else {
+  } else {
     // Manejo alternativo si PiP no está soportado
     console.warn("Picture-in-Picture is not supported in this browser.");
-}
+  }
 
-    
+  //alarm logic 
+  let alarmSound: HTMLAudioElement; //se declara el elemento de audio
+  let selectedAlarm: string = 'public/audio/alarm-no3.mp3'; //se declara la ruta de la alarma por defecto
+
+  function loadAlarm() {
+    alarmSound = new Audio(selectedAlarm); //se crea una nueva instancia del elemento de audio con la ruta de la alarma
+  }
+
+  function playAlarm() {
+    alarmSound.play(); //se reproduce la alarma
+  }
+
+  function updateAlarmSound(){
+    const alarmSelected = document.getElementById('alarm') as HTMLSelectElement;
+    selectedAlarm = `./public/audio/${alarmSelected.value}.mp3`; //se actualiza la ruta de la alarma
+    loadAlarm(); //se carga la nueva alarma
+  }
+
+  loadAlarm(); //se carga la alarma por defecto
+
+  document.getElementById('alarm')!.addEventListener('change', updateAlarmSound); //se añade un evento al select de la alarma para actualizar la alarma
 </script>
 
 <style>
-    .main-container {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        background-color: #00000033;
-        padding: 1rem;
-        border-radius: 1rem;
-        position: relative ;
-        min-width: 350px;
-    }
-    .container-element {
-        font-family: monospace, sans-serif;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        padding: 5rem;
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: #00000033;
+    padding: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    min-width: 350px;
+  }
+  .container-element {
+    font-family: monospace, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 5rem;
 
-        & p {
-            font-size: 3rem;
-        }
-
-        & button {
-            background-color: #000;
-            color: #fff;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 5px; 
-            cursor: pointer;
-            transition: all 0.3s ease;
-
-            &:hover {
-                background-color: #fff;
-                color: #000;
-            }
-        }
+    & p {
+      font-size: 3rem;
     }
 
-    .time-controls {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
+    & button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+
+  .time-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: #000;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: #fff;
+
+    & input {
+      appearance: none;
+      background-color: transparent;
+      width: 5rem;
+      height: 2rem;
+      border-radius: 1rem;
+      border: none;
+      text-align: center;
+
+      &::-webkit-slider-runnable-track {
+        appearance: none;
+        background-color: #447;
+        border-radius: 2rem;
+      }
+
+      &::-webkit-slider-thumb {
+        appearance: none;
+        width: 1rem;
+        height: 1rem;
         background-color: #000;
-        padding: 1rem;
-        border-radius: 1rem;
-        color: #fff;
-
-        & input {
-            appearance: none;
-            background-color: transparent;
-            width: 5rem;
-            height: 2rem;
-            border-radius: 1rem;
-            border: none;
-            text-align: center;
-
-            &::-webkit-slider-runnable-track {
-                appearance: none;
-                background-color: #447;
-                border-radius: 2rem;
-            }
-
-            &::-webkit-slider-thumb {
-                appearance: none;
-                width: 1rem;
-                height: 1rem;
-                background-color: #000;
-                border: 1px solid #fff;
-                border-radius: 50%;
-            }
-            
-        }
+        border: 1px solid #fff;
+        border-radius: 50%;
+      }
     }
+  }
 
+  @media (max-width: 350px) {
+    .container-element {
+      padding: 3rem 0 3rem 0;
 
+      & p {
+        font-size: 1.8rem;
+      }
 
-    @media(max-width: 350px) {
-        .container-element {
-            padding: 3rem 0 3rem 0;
-
-            & p {
-                font-size: 1.8rem;
-            }
-
-            & button {
-                padding: 0.5rem 1rem;
-            }
-        }
+      & button {
+        padding: 0.5rem 1rem;
+      }
     }
+  }
 </style>
