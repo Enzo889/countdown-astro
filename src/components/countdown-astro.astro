@@ -5,8 +5,10 @@ import Restore from './icons/restore.astro';
 ---
 
 <div class="main-container">
+    <div>
 
-    <main class="theme-b container-element">
+        
+        <main class="theme-b container-element">
     <div>
         <p id="countdown">00:01:00</p>
     </div>
@@ -15,8 +17,9 @@ import Restore from './icons/restore.astro';
         <button class="restart"> <Restore /> </button>
         <button class="pip-btn"> <Pip /> </button>
     </div>
-</main>
-<div id="pip-message" style="display: none; color: yellow;">Estás en modo PiP</div>
+</main> 
+<div id="pip-message" class="hidden text-yellow-500 text-center text-2xl font-mono h-40"> <p class="p-6 my-11 rounded-2xl border  bg-black/45 border-yellow-500">Estás en modo PiP</p></div>
+</div>
     <div class="time-controls">
         <label for="hours">Hours</label>
         <input type="range" name="hours" id="hours" min="0" max="100" value="0">
@@ -28,7 +31,7 @@ import Restore from './icons/restore.astro';
 </div>
 
 <script>
-
+    
     const seconds = document.getElementById('seconds') as HTMLInputElement;
     const minutes = document.getElementById('minutes') as HTMLInputElement;
     const hours = document.getElementById('hours') as HTMLInputElement;
@@ -150,7 +153,7 @@ if ("documentPictureInPicture" in window) {
         pipWindow.addEventListener("unload", onLeavePiP.bind(pipWindow), { once: true });
     }
 
-    function onLeavePiP() {
+    function onLeavePiP(this: any) {
         if (this !== pipWindow) {
             return;
         }
@@ -201,6 +204,7 @@ if ("documentPictureInPicture" in window) {
         align-items: center;
         gap: 2rem;
         padding: 5rem;
+
         & p {
             font-size: 3rem;
         }
@@ -257,6 +261,8 @@ if ("documentPictureInPicture" in window) {
             
         }
     }
+
+
 
     @media(max-width: 350px) {
         .container-element {
