@@ -52,14 +52,14 @@ import Restore from "./icons/restore.astro";
   </div>
     <div class="alarm">
     <select name="alarm" id="alarm">
-      <option value="alarm-no1.mp3">alarm 1</option>
-      <option value="military_alarm-6380">alarm 2</option>
-      <option value="police-6007">alarm 3</option>
-      <option value="alarm-no4.mp3">alarm 4</option>
-      <option value="alarm-no5.mp3">alarm 5</option>
-      <option value="alarm-no6.mp3">alarm 6</option>
-      <option value="alarm-no7.mp3">alarm 7</option>
-      <option value="alarm-no8.mp3">alarm 8</option>
+      <option value="alarm-no1.mp3">Alarm N°1</option>
+      <option value="military_alarm-6380">Military Alarm</option>
+      <option value="police-6007">Police Alarm</option>
+      <option value="alarm-no4.mp3">Alarm N°4</option>
+      <option value="alarm-no5.mp3">Alarm N°5</option>
+      <option value="alarm-no6.mp3">Alarm N°6</option>
+      <option value="alarm-no7.mp3">Alarm N°7</option>
+      <option value="alarm-no8.mp3">Alarm N°8</option>
     </select>
   </div>
 </div>
@@ -346,7 +346,8 @@ import Restore from "./icons/restore.astro";
       background-color: #000;
       color: #fff;
       border: 1px solid orangered;
-      padding: 1rem 3rem;
+      padding: 1rem 3.5rem;
+      text-align: center;
       border-radius: 5px;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -360,7 +361,16 @@ import Restore from "./icons/restore.astro";
 	box-shadow: 0 0 1px 3px orangered;
 	box-shadow: 0 0 0 3px -moz-mac-focusring;
       }
+
+      & option {
+        cursor: pointer;
+        color: #fff;
+        text-align: left;
+      
     }
+
+  }
+    
 
   }
 
