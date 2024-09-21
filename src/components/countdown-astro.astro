@@ -318,6 +318,11 @@ import Restore from "./icons/restore.astro";
       border-radius: 1rem;
       border: none;
       text-align: center;
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
 
       &::-webkit-slider-runnable-track {
         appearance: none;
