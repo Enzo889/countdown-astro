@@ -1,0 +1,57 @@
+---
+const themes = ['light', 'dark', 'red', 'blue', 'green', 'purple'];
+---
+<div>
+    {themes.map(theme => (
+        <button class="theme-button" data-theme={theme} aria-label="Theme Selecter" title=`${theme.charAt(0).toUpperCase() + theme.slice(1)} Theme` >
+{/*           {theme.charAt(0).toUpperCase() + theme.slice(1)} Theme
+ */}        </button>
+      ))}
+</div>
+
+<style>
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        position: absolute;
+        left: 20px;
+
+    }
+    .theme-button {
+        padding: 1rem;
+        border-radius: 50%;
+        background-color: chartreuse;
+    }
+    .theme-button.active {
+  border: 2px solid orangered;
+}
+</style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+  const theme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+  
+  const themeButtons = document.querySelectorAll('.theme-button');
+  themeButtons.forEach(button => {
+    if (button.getAttribute('data-theme') === theme) {
+      button.classList.add('active');
+    }
+
+    button.addEventListener('click', () => {
+      const selectedTheme = button.getAttribute('data-theme');
+      if(selectedTheme) {
+          document.documentElement.setAttribute('data-theme', selectedTheme);
+          localStorage.setItem('theme', selectedTheme);
+          
+          // Remover la clase 'active' de los demás botones
+          themeButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+        }
+    });
+  });
+});
+
+</script>

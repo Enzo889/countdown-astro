@@ -25,13 +25,40 @@ const { title } = Astro.props;
 <style is:global>
 
 :root {
-	color-scheme: light dark;
+  --bg-color: white;
+  --text-color: black;
 }
 
-.theme-b {
-	background-color: light-dark(#199,#447);
-	color: light-dark(#000, #fff );
+/* Tema oscuro */
+[data-theme='dark'] {
+  --bg-color: black;
+  --text-color: white;
 }
+
+/* Tema rojo */
+[data-theme='red'] {
+  --bg-color: #ff4d4d;
+  --text-color: #330000;
+}
+
+/* Tema azul */
+[data-theme='blue'] {
+  --bg-color: #4d79ff;
+  --text-color: #001f4d;
+}
+
+/* Tema verde */
+[data-theme='green'] {
+  --bg-color: #4dff88;
+  --text-color: #00331a;
+}
+
+/* Tema púrpura */
+[data-theme='purple'] {
+  --bg-color: #a64dff;
+  --text-color: #26004d;
+}
+
 	* {
 		box-sizing: border-box;
 		position: relative;
@@ -39,6 +66,8 @@ const { title } = Astro.props;
 	}
 	body {
 		min-height: 100dvh;
+		background-color: var(--bg-color);
+		color: var(--text-color);
 	}
 	h1, h2, h3, h4, h5, h6 {
 		text-wrap: balance;
@@ -46,20 +75,5 @@ const { title } = Astro.props;
 
 	p {
 	 text-wrap: pretty;	
-	}
-
-	html {
-		background-color: var(--bg-color);
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
 	}
 </style>
