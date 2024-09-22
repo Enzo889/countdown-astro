@@ -23,26 +23,15 @@ const { title } = Astro.props;
 	</body>
 </html>
 <style is:global>
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--bg-color: #13151a;
-		}
 
-		.theme-b {
-			background: #447;
-			color: #bbd;
-		}
+:root {
+	color-scheme: light dark;
+}
 
-	}
-	@media (prefers-color-scheme: light) {
-		:root {
-			--bg-color: #f0f0f0;
-		}
-		.theme-b {
-			background: #753;
-			color: #dcb;
-		}
-	}
+.theme-b {
+	background-color: light-dark(#199,#447);
+	color: light-dark(#000, #fff );
+}
 	* {
 		box-sizing: border-box;
 		position: relative;
