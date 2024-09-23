@@ -26,6 +26,7 @@ const themes = ['light', 'dark', 'red', 'blue', 'green', 'purple'];
     .theme-button.active {
   border: 2px solid orangered;
 }
+
 </style>
 
 
@@ -43,8 +44,10 @@ const themes = ['light', 'dark', 'red', 'blue', 'green', 'purple'];
     button.addEventListener('click', () => {
       const selectedTheme = button.getAttribute('data-theme');
       if(selectedTheme) {
-          document.documentElement.setAttribute('data-theme', selectedTheme);
-          localStorage.setItem('theme', selectedTheme);
+        document.startViewTransition(() => {
+            document.documentElement.setAttribute('data-theme', selectedTheme);
+            localStorage.setItem('theme', selectedTheme);
+        });
           
           // Remover la clase 'active' de los demás botones
           themeButtons.forEach(btn => btn.classList.remove('active'));
@@ -53,5 +56,4 @@ const themes = ['light', 'dark', 'red', 'blue', 'green', 'purple'];
     });
   });
 });
-
 </script>
