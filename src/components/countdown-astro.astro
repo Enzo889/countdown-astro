@@ -264,7 +264,7 @@ import Restore from "./icons/restore.astro";
   .container-main {
     padding: 1rem;
     border-radius: 1rem;
-    background-color: #00000033;
+    background-color: rgba(68, 68, 119, 0.336);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -272,7 +272,7 @@ import Restore from "./icons/restore.astro";
 
   .container-element {
     font-family: monospace, sans-serif;
-    color: white;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -305,7 +305,7 @@ import Restore from "./icons/restore.astro";
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    background-color: #000;
+    background-color: var(--bg-control);
     padding: 1rem;
     border-radius: 1rem;
     color: #fff;
@@ -326,7 +326,7 @@ import Restore from "./icons/restore.astro";
 
       &::-webkit-slider-runnable-track {
         appearance: none;
-        background-color: #447;
+        background-color: var(--input-runnable-color);
         border-radius: 2rem;
       }
 
@@ -334,8 +334,8 @@ import Restore from "./icons/restore.astro";
         appearance: none;
         width: 1rem;
         height: 1rem;
-        background-color: #000;
-        border: 1px solid #fff;
+        background-color: var(--input-thum-color);
+        border: 1px solid var(--input-thum-color-border);
         border-radius: 50%;
       }
     }
@@ -343,7 +343,7 @@ import Restore from "./icons/restore.astro";
 
   .alarm {
     gap: 1rem;
-    background-color: #00000033;
+    background-color: var(--bg-alarm-p);
     padding: 1rem;
     border-radius: 1rem;
     height: 100%;
@@ -355,14 +355,14 @@ import Restore from "./icons/restore.astro";
         top: 50%;
         transform: translateY(-50%);
         pointer-events: none; /* Para que no interfiera con el click */
-        color: orangered; /* Color de la flecha */
+        color: var(--select-accent); /* Color de la flecha */
         font-size: 15px;
       }
 
     & select {
       background-color: #000;
       color: #fff;
-      border: 1px solid orangered;
+      border: 1px solid var(--select-accent);
       padding: 1rem 3.5rem;
       border-radius: 5px;
       cursor: pointer;
@@ -374,7 +374,7 @@ import Restore from "./icons/restore.astro";
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 1px 3px orangered;
+        box-shadow: 0 0 1px 3px var(--select-accent);
         box-shadow: 0 0 0 3px -moz-mac-focusring;
       }
 

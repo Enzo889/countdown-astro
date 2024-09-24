@@ -1,6 +1,4 @@
 ---
-import { AnimatePresence } from 'framer-motion';
-
 interface Props {
 	title: string;
 }
@@ -24,39 +22,82 @@ const { title } = Astro.props;
 </html>
 <style is:global>
 
+
+/* Tema Ligth */
 :root {
   --bg-color: white;
   --text-color: black;
+  --bg-control: rgb(178, 190, 186);
+  --select-accent: crimson;
+  --input-thum-color: orangered;
+  --input-runnable-color: red;
+  --input-thum-color-border: white;
+  --bg-alarm-p: #00000033;
 }
 
 /* Tema oscuro */
 [data-theme='dark'] {
   --bg-color: black;
   --text-color: white;
+  --bg-control: rgb(19, 17, 17);
+  --select-accent: crimson;
+  --input-thum-color: orangered;
+  --input-runnable-color: red;
+  --input-thum-color-border: white;
+  --bg-alarm-p: #00000033;
+
 }
 
 /* Tema rojo */
 [data-theme='red'] {
   --bg-color: #ff4d4d;
   --text-color: #330000;
+  --bg-control: rgb(224, 11, 11);
+  --select-accent: crimson;
+    --input-thum-color: orangered;
+	--input-runnable-color: red;
+	--input-thum-color-border: white;
+	--bg-alarm-p: #00000033;
+
 }
 
 /* Tema azul */
 [data-theme='blue'] {
   --bg-color: #4d79ff;
   --text-color: #001f4d;
+  --bg-control: rgb(25, 11, 224);
+  --select-accent: crimson;
+  --input-thum-color: orangered;
+  --input-runnable-color: red;
+  --input-thum-color-border: white;
+  --bg-alarm-p: #00000033;
+
 }
 
 /* Tema verde */
 [data-theme='green'] {
   --bg-color: #4dff88;
   --text-color: #00331a;
+  --bg-control: rgb(11, 224, 143);
+  --select-accent: crimson;
+  --input-thum-color: orangered;
+  --input-runnable-color: red;
+  --input-thum-color-border: white;
+  --bg-alarm-p: #00000033;
+
 }
 
 /* Tema púrpura */
 [data-theme='purple'] {
   --bg-color: #a64dff;
   --text-color: #26004d;
+  --bg-control: rgb(11, 224, 46);
+  --select-accent: crimson;
+  --input-thum-color: orangered;
+  --input-runnable-color: red;
+  --input-thum-color-border: white;
+    --bg-alarm-p: #00000033;
+
 }
 
 	* {
@@ -76,205 +117,210 @@ const { title } = Astro.props;
 	p {
 	 text-wrap: pretty;	
 	}
-
-
-
 /* view transition */
 
 :root {
-  --expo-in: linear(
-    0 0%, 0.0085 31.26%, 0.0167 40.94%,
-    0.0289 48.86%, 0.0471 55.92%,
-    0.0717 61.99%, 0.1038 67.32%,
-    0.1443 72.07%, 0.1989 76.7%,
-    0.2659 80.89%, 0.3465 84.71%,
-    0.4419 88.22%, 0.554 91.48%,
-    0.6835 94.51%, 0.8316 97.34%, 1 100%
-  );
-  --expo-out: linear(
-    0 0%, 0.1684 2.66%, 0.3165 5.49%,
-    0.446 8.52%, 0.5581 11.78%,
-    0.6535 15.29%, 0.7341 19.11%,
-    0.8011 23.3%, 0.8557 27.93%,
-    0.8962 32.68%, 0.9283 38.01%,
-    0.9529 44.08%, 0.9711 51.14%,
-    0.9833 59.06%, 0.9915 68.74%, 1 100%
-  );
-}
-
-/* gif Spiderman */
-[data-theme='purple']::view-transition-group(root) {
-  animation-timing-function: var(--expo-in);
-}
-
-[data-theme='purple']::view-transition-new(root){
-  mask: url('https://media.tenor.com/Jz0aSpk9VIQAAAAi/i-love-you-love.gif') center / 0 no-repeat;
-  animation: scale 1.5s;
-}
-
-[data-theme='purple']::view-transition-old(root){
-  animation: scale 1.5s;
-}
-
-@keyframes scale {
-  0% {
-    mask-size: 0;
+    --expo-in: linear(
+      0 0%, 0.0085 31.26%, 0.0167 40.94%,
+      0.0289 48.86%, 0.0471 55.92%,
+      0.0717 61.99%, 0.1038 67.32%,
+      0.1443 72.07%, 0.1989 76.7%,
+      0.2659 80.89%, 0.3465 84.71%,
+      0.4419 88.22%, 0.554 91.48%,
+      0.6835 94.51%, 0.8316 97.34%, 1 100%
+    );
+    --expo-out: linear(
+      0 0%, 0.1684 2.66%, 0.3165 5.49%,
+      0.446 8.52%, 0.5581 11.78%,
+      0.6535 15.29%, 0.7341 19.11%,
+      0.8011 23.3%, 0.8557 27.93%,
+      0.8962 32.68%, 0.9283 38.01%,
+      0.9529 44.08%, 0.9711 51.14%,
+      0.9833 59.06%, 0.9915 68.74%, 1 100%
+    );
   }
-  10% {
-    mask-size: 50vmax;
+  
+  /* gif Spiderman */
+  [data-theme='purple']::view-transition-group(root) {
+    animation-timing-function: var(--expo-in);
   }
-  90% {
-    mask-size: 50vmax;
+  
+  [data-theme='purple']::view-transition-new(root){
+    mask: url('https://media.tenor.com/Jz0aSpk9VIQAAAAi/i-love-you-love.gif') center / 0 no-repeat;
+    animation: scalePurple 1.5s;
   }
-  100% {
-    mask-size: 2000vmax;
+  
+  [data-theme='purple']::view-transition-old(root){
+    animation: scalePurple 1.5s;
   }
-}
-
-/* circle blur */
-[data-theme='green']::view-transition-group(root) {
-  animation-timing-function: var(--expo-out);
-}
-
-
-[data-theme='green']::view-transition-new(root) {
-  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><circle cx="20" cy="20" r="18" fill="white" filter="url(%23blur)"/></svg>') center / 0 no-repeat;
-  animation: scaleBlur 1s;
-}
-
-
-[data-theme='green']::view-transition-old(root){
-  animation: none;
-  z-index: -1;
-}
-
-
-@keyframes scaleBlur {
-  to {
-    mask-size: 200vmax;
+  
+  @keyframes scalePurple {
+    0% {
+      mask-size: 0;
+    }
+    10% {
+      mask-size: 50vmax;
+    }
+    90% {
+      mask-size: 50vmax;
+    }
+    100% {
+      mask-size: 2000vmax;
+    }
   }
-}
-
-
-/* gif Limpiador */
-[data-theme='red']::view-transition-group(root) {
-  animation-timing-function: var(--expo-in);
-}
-
-[data-theme='red']::view-transition-new(root){
-  mask: url('https://media.tenor.com/vhWXa5bVuNAAAAAj/clearing.gif') center / 0 no-repeat;
-  animation: scaleRed 3s;
-}
-
-[data-theme='red']::view-transition-old(root){
-  animation: scaleRed 3s;
-}
-
-@keyframes scaleRed {
-  0% {
-    mask-size: 0;
+  
+  /* gift Petalos */
+  [data-theme='green']::view-transition-group(root) {
+    animation-timing-function: var(--expo-in);
   }
-  10% {
-    mask-size: 35vmax;
+  
+  [data-theme='green']::view-transition-new(root){
+    mask: url('https://media.tenor.com/3x24wkGuaiwAAAAj/timboulder-haha.gif') center / 0 no-repeat;
+    animation: scaleGreen 3.5s;
   }
-  90% {
-    mask-size: 35vmax;
+  
+  [data-theme='green']::view-transition-old(root){
+    animation: scaleGreen 3.5s;
   }
-  100% {
-    mask-size: 2000vmax;
+  
+  @keyframes scaleGreen {
+    0% {
+      mask-size: 0;
+    }
+    10% {
+      mask-size: 20vmax;
+    }
+    90% {
+      mask-size: 40vmax;
+    }
+    100% {
+      mask-size: 2000vmax;
+    }
   }
-}
-
-
-
-
-/* gif Goku */
-[data-theme='dark']::view-transition-group(root) {
-  animation-timing-function: var(--expo-in);
-}
-
-[data-theme='dark']::view-transition-new(root){
-  mask: url('src/components/icons/yH.gif') center / 0 no-repeat;
-  animation: scaleGoku 1.5s;
-}
-
-[data-theme='dark']::view-transition-old(root){
-  animation: scaleGoku 1.5s;
-}
-
-@keyframes scaleGoku {
-  0% {
-    mask-size: 0;
+  
+  
+  /* gif Limpiador */
+  [data-theme='red']::view-transition-group(root) {
+    animation-timing-function: var(--expo-in);
   }
-  10% {
-    mask-size: 40vmax;
+  
+  [data-theme='red']::view-transition-new(root){
+    mask: url('https://media.tenor.com/vhWXa5bVuNAAAAAj/clearing.gif') center / 0 no-repeat;
+    animation: scaleRed 3s;
   }
-  90% {
-    mask-size: 40vmax;
+  
+  [data-theme='red']::view-transition-old(root){
+    animation: scaleRed 3s;
   }
-  100% {
-    mask-size: 2000vmax;
+  
+  @keyframes scaleRed {
+    0% {
+      mask-size: 0;
+    }
+    10% {
+      mask-size: 35vmax;
+    }
+    90% {
+      mask-size: 35vmax;
+    }
+    100% {
+      mask-size: 2000vmax;
+    }
   }
-}
-
-
-/* gif Travolta */
-[data-theme='blue']::view-transition-group(root) {
-  animation-timing-function: var(--expo-in);
-}
-
-[data-theme='blue']::view-transition-new(root){
-  mask: url('https://media.tenor.com/rWx3fjRwcXIAAAAj/kid-goku.gif') center / 0 no-repeat;
-  animation: scaleTravolta 3.5s;
-}
-
-[data-theme='blue']::view-transition-old(root){
-  animation: scaleTravolta 3.5s;
-}
-
-@keyframes scaleTravolta {
-  0% {
-    mask-size: 0;
+  
+  
+  
+  
+  /* gif Travolta */
+  [data-theme='dark']::view-transition-group(root) {
+    animation-timing-function: var(--expo-in);
   }
-  10% {
-    mask-size: 40vmax;
+  
+  [data-theme='dark']::view-transition-new(root){
+    mask: url('src/components/icons/yH.gif') center / 0 no-repeat;
+    animation: scaleDark 1.5s;
   }
-  90% {
-    mask-size: 40vmax;
+  
+  [data-theme='dark']::view-transition-old(root){
+    animation: scaleDark 1.5s;
   }
-  100% {
-    mask-size: 2000vmax;
+  
+  @keyframes scaleDark {
+    0% {
+      mask-size: 0;
+    }
+    10% {
+      mask-size: 40vmax;
+    }
+    90% {
+      mask-size: 40vmax;
+    }
+    100% {
+      mask-size: 2000vmax;
+    }
   }
-}
+  
+  
+  /* gif Goku */
+  [data-theme='blue']::view-transition-group(root) {
+    animation-timing-function: var(--expo-in);
+  }
+  
+  [data-theme='blue']::view-transition-new(root){
+    mask: url('https://media.tenor.com/rWx3fjRwcXIAAAAj/kid-goku.gif') center / 0 no-repeat;
+    animation: scaleBlue 3.5s;
+  }
+  
+  [data-theme='blue']::view-transition-old(root){
+    animation: scaleBlue 3.5s;
+  }
+  
+  @keyframes scaleBlue {
+    0% {
+      mask-size: 0;
+    }
+    10% {
+      mask-size: 40vmax;
+    }
+    90% {
+      mask-size: 40vmax;
+    }
+    100% {
+      mask-size: 2000vmax;
+    }
+  }
+  
+  
+  /* gif Homero */
+  ::view-transition-group(root) {
+    animation-timing-function: var(--expo-in);
 
-
-/* gif Travolta */
-::view-transition-group(root) {
-  animation-timing-function: var(--expo-in);
-}
-
-::view-transition-new(root){
-  mask: url('src/components/icons/XSNt.gif') center / 0 no-repeat;
-  animation: scaleTravolta 3.5s;
-}
-
-::view-transition-old(root){
-  animation: scaleTravolta 3.5s;
-}
-
-@keyframes scaleTravolta {
-  0% {
-    mask-size: 0;
   }
-  10% {
-    mask-size: 40vmax;
+  
+  ::view-transition-new(root){
+    mask: url('src/components/icons/XSNt.gif') center / 0 no-repeat;
+    animation: scaleLigth 3.5s;
   }
-  90% {
-    mask-size: 40vmax;
-  }
-  100% {
-    mask-size: 2000vmax;
-  }
-}
+  
+  ::view-transition-old(root){
+    animation: scaleLigth 3.5s;
 
+  }
+  
+  @keyframes scaleLigth {
+    0% {
+      mask-size: 0;
+    }
+    10% {
+      mask-size: 40vmax;
+	  
+    }
+    90% {
+      mask-size: 40vmax;
+    }
+    100% {
+      mask-size: 2000vmax;
+    }
+  }
+  
 </style>
