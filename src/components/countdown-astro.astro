@@ -264,7 +264,7 @@ import Restore from "./icons/restore.astro";
   .container-main {
     padding: 1rem;
     border-radius: 1rem;
-    background-color: rgba(68, 68, 119, 0.336);
+    background-color: var(--bg-cont-main);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -285,8 +285,8 @@ import Restore from "./icons/restore.astro";
     }
 
     & button {
-      background-color: #000;
-      color: #fff;
+      background-color: var(--bg-btn);
+      color: var(--txt-btn);
       border: none;
       padding: 1rem 2rem;
       border-radius: 5px;
@@ -294,8 +294,8 @@ import Restore from "./icons/restore.astro";
       transition: all 0.3s ease;
 
       &:hover {
-        background-color: #fff;
-        color: #000;
+        background-color: var(--bg-btn-hover);
+        color: var(--txt-btn-hover);
       }
     }
   }
@@ -308,7 +308,7 @@ import Restore from "./icons/restore.astro";
     background-color: var(--bg-control);
     padding: 1rem;
     border-radius: 1rem;
-    color: #fff;
+    color: var(--txt-control);
 
     & input {
       appearance: none;
@@ -360,8 +360,8 @@ import Restore from "./icons/restore.astro";
       }
 
     & select {
-      background-color: #000;
-      color: #fff;
+      background-color: var(--bg-select);
+      color: var(--select-txt-color);
       border: 1px solid var(--select-accent);
       padding: 1rem 3.5rem;
       border-radius: 5px;
@@ -380,7 +380,7 @@ import Restore from "./icons/restore.astro";
 
       & option {
         cursor: pointer;
-        color: #fff;
+        color: var(--txt-option);
         text-align: left;
       }
     }
