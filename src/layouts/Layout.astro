@@ -23,128 +23,128 @@ const { title } = Astro.props;
 <style is:global>
   /* Tema Ligth */
   :root {
-    --bg-color: white;
-    --text-color: black;
-    --bg-cont-main: rgba(68, 68, 119, 0.336);
-    --bg-btn: #000;
-    --txt-btn: #fff;
-    --bg-btn-hover: #fff;
-    --txt-btn-hover: #000;
-    --bg-control: rgb(178, 190, 186);
-    --txt-control: #fff;
-    --select-accent: crimson;
-    --input-thum-color: orangered;
-    --input-runnable-color: red;
-    --input-thum-color-border: white;
-    --bg-alarm-p: #00000033;
-    --bg-select: #000;
-    --select-txt-color: white;
-    --txt-option: #fff;
+	--bg-color: #e5f3fb;
+    --text-color: #e5f3fb;
+    --bg-cont-main: #113b3a;
+    --bg-btn: #e5f3fb;
+    --txt-btn: #113b3a;
+    --bg-btn-hover: #113b3a;
+    --txt-btn-hover: #e5f3fb;
+    --bg-control: #e5f3fb;
+    --txt-control: #113b3a;
+    --select-accent: #e5f3fb;
+    --input-thum-color: #e5f3fb;
+    --input-runnable-color: #113b3a;
+    --input-thum-color-border: #113b3a;
+    --bg-alarm-p: #113b3a;
+    --bg-select: #113b3a;
+    --select-txt-color: #e5f3fb;
+    --txt-option: #e5f3fb;
   }
 
   /* Tema oscuro */
   [data-theme="dark"] {
-    --bg-color: black;
-    --text-color: white;
-    --bg-cont-main: rgba(68, 68, 119, 0.336);
-    --bg-btn: #000;
+    --bg-color: #2c2c2d;
+    --text-color: #fff;
+    --bg-cont-main: #233044;
+    --bg-btn: #232629;
     --txt-btn: #fff;
     --bg-btn-hover: #fff;
-    --txt-btn-hover: #000;
-    --bg-control: rgb(19, 17, 17);
+    --txt-btn-hover: #232629;
+    --bg-control: #232629;
     --txt-control: #fff;
-    --select-accent: crimson;
-    --input-thum-color: orangered;
-    --input-runnable-color: red;
+    --select-accent: #253e5a;
+    --input-thum-color: #233044;
+    --input-runnable-color: #253e5a;
     --input-thum-color-border: white;
-    --bg-alarm-p: #00000033;
-    --bg-select: #000;
+    --bg-alarm-p: #23262190;
+    --bg-select: #232629;
     --select-txt-color: white;
     --txt-option: #fff;
   }
 
   /* Tema rojo */
   [data-theme="red"] {
-    --bg-color: #ff4d4d;
-    --text-color: #330000;
-    --bg-cont-main: rgba(68, 68, 119, 0.336);
-    --bg-btn: #000;
-    --txt-btn: #fff;
-    --bg-btn-hover: #fff;
-    --txt-btn-hover: #000;
-    --bg-control: rgb(224, 11, 11);
-    --txt-control: #fff;
-    --select-accent: crimson;
-    --input-thum-color: orangered;
-    --input-runnable-color: red;
-    --input-thum-color-border: white;
-    --bg-alarm-p: #00000033;
-    --bg-select: #000;
-    --select-txt-color: white;
-    --txt-option: #fff;
+	--bg-color: #f31d21;
+    --text-color: #f31d21;
+    --bg-cont-main: #06000c;
+    --bg-btn: #f31d21;
+    --txt-btn: #06000c;
+    --bg-btn-hover: #06000c;
+    --txt-btn-hover: #f31d21;
+    --bg-control: #f31d21;
+    --txt-control: #06000c;
+    --select-accent: #f31d21;
+    --input-thum-color: #f31d21;
+    --input-runnable-color: #06000c;
+    --input-thum-color-border: #06000c;
+    --bg-alarm-p: #06000c;
+    --bg-select: #06000c;
+    --select-txt-color: #f31d21;
+    --txt-option: #f31d21;
   }
 
   /* Tema azul */
   [data-theme="blue"] {
-    --bg-color: #260faf;
-    --text-color: #e4bfef;
-    --bg-cont-main: #6f1681;
-    --bg-btn: #fda5fe;
-    --txt-btn: #0c0c14;
-    --bg-btn-hover: #8484b8;
-    --txt-btn-hover: #fda5fe;
-    --bg-control: #443c84;
-    --txt-control: #fff;
-    --select-accent: #8484b8;
-    --input-thum-color: #0c0c14;
-    --input-runnable-color: #e4bfef;
-    --input-thum-color-border: white;
-    --bg-alarm-p: #6f1681;
-    --bg-select: #e4bfef;
-    --select-txt-color: #0c0c14;
-    --txt-option: #0c0c14;
+    --bg-color: #321df4;
+    --text-color: #321df4;
+    --bg-cont-main: #f3e9ce;
+    --bg-btn: #321df4;
+    --txt-btn: #f3e9ce;
+    --bg-btn-hover: #f3e9ce;
+    --txt-btn-hover: #321df4;
+    --bg-control: #321df4;
+    --txt-control: #f3e9ce;
+    --select-accent: #321df4;
+    --input-thum-color: #321df4;
+    --input-runnable-color: #f3e9ce;
+    --input-thum-color-border: #f3e9ce;
+    --bg-alarm-p: #f3e9ce;
+    --bg-select: #f3e9ce;
+    --select-txt-color: #321df4;
+    --txt-option: #321df4;
   }
 
   /* Tema verde */
   [data-theme="green"] {
-    --bg-color: #4dff88;
-    --text-color: #00331a;
-    --bg-cont-main: rgba(68, 68, 119, 0.336);
-    --bg-btn: #000;
-    --txt-btn: #fff;
-    --bg-btn-hover: #fff;
-    --txt-btn-hover: #000;
-    --bg-control: rgb(11, 224, 143);
-    --txt-control: #fff;
-    --select-accent: crimson;
-    --input-thum-color: orangered;
-    --input-runnable-color: red;
-    --input-thum-color-border: white;
-    --bg-alarm-p: #00000033;
-    --bg-select: #000;
-    --select-txt-color: white;
-    --txt-option: #fff;
+    --bg-color: #43fa0c;
+    --text-color: #43fa0c;
+    --bg-cont-main: #06646c;
+    --bg-btn: #43fa0c;
+    --txt-btn: #06646c;
+    --bg-btn-hover: #06646c;
+    --txt-btn-hover: #43fa0c;
+    --bg-control: #43fa0c;
+    --txt-control: #06646c;
+    --select-accent: #43fa0c;
+    --input-thum-color: #43fa0c;
+    --input-runnable-color: #06646c;
+    --input-thum-color-border: #06646c;
+    --bg-alarm-p: #06646c;
+    --bg-select: #06646c;
+    --select-txt-color: #43fa0c;
+    --txt-option: #43fa0c;
   }
 
   /* Tema púrpura */
   [data-theme="purple"] {
-    --bg-color: #f4d0a7;
-    --text-color: #566095;
-    --bg-cont-main: #ed8535;
-    --bg-btn: #f0ad64;
-    --txt-btn: #8785a7;
-    --bg-btn-hover: #8785a7;
-    --txt-btn-hover: #f0ad64;
-    --bg-control: #bf3836;
-    --txt-control: #fff;
-    --select-accent: #ed8535;
-    --input-thum-color: #8785a7;
-    --input-runnable-color: #8785a7;
-    --input-thum-color-border: white;
+    --bg-color: color(display-p3 0.97523 0.29652 0.80942);
+    --text-color: color(display-p3 0.97523 0.29652 0.80942);
+    --bg-cont-main: black;
+    --bg-btn: color(display-p3 0.97523 0.29652 0.80942);
+    --txt-btn: black;
+    --bg-btn-hover: black;
+    --txt-btn-hover: color(display-p3 0.97523 0.29652 0.80942);
+    --bg-control: color(display-p3 0.97523 0.29652 0.80942);
+    --txt-control: black;
+    --select-accent: color(display-p3 0.97523 0.29652 0.80942);
+    --input-thum-color: color(display-p3 0.97523 0.29652 0.80942);
+    --input-runnable-color: black;
+    --input-thum-color-border: black;
     --bg-alarm-p: #00000033;
-    --bg-select: #000;
-    --select-txt-color: white;
-    --txt-option: #fff;
+    --bg-select: black;
+    --select-txt-color: color(display-p3 0.97523 0.29652 0.80942);
+    --txt-option: color(display-p3 0.97523 0.29652 0.80942);
   }
 
   * {
