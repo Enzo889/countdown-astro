@@ -18,10 +18,8 @@ import Restore from "./icons/restore.astro";
         </div>
       </main>
       <div
-        id="pip-message"
-        class="hidden text-yellow-500 text-center text-2xl font-mono h-40"
-      >
-        <p class="p-6 my-11 rounded-2xl border bg-black/45 border-yellow-500">
+        id="pip-message">
+        <p>
           Estás en modo PiP
         </p>
       </div>
@@ -291,11 +289,13 @@ import Restore from "./icons/restore.astro";
       padding: 1rem 2rem;
       border-radius: 5px;
       cursor: pointer;
+      border: 1px solid transparent;
       transition: all 0.3s ease;
 
       &:hover {
         background-color: var(--bg-btn-hover);
         color: var(--txt-btn-hover);
+        border: 1px solid var(--bg-btn);
       }
     }
   }
@@ -338,6 +338,23 @@ import Restore from "./icons/restore.astro";
         border: 1px solid var(--input-thum-color-border);
         border-radius: 50%;
       }
+    }
+  }
+
+  #pip-message {
+    display: none;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: monospace;
+    height: 10rem;
+
+    & p {
+      padding: 1.5rem; /* p-6 */
+    margin-top: 2.75rem; /* my-11 */
+    margin-bottom: 2.75rem; /* my-11 */
+    border-radius: 1.5rem; /* rounded-2xl */
+    border: 1px solid var(--text-color); /* border-yellow-500 (color amarillo) */
     }
   }
 
@@ -459,6 +476,7 @@ import Restore from "./icons/restore.astro";
 
     .container-element {
       padding: 3rem 0 3rem 0;
+      color: #113b3a ;
 
       & p {
         font-size: 1.8rem;
