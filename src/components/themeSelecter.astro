@@ -1,11 +1,12 @@
 ---
 const themes = ['light', 'dark', 'red', 'blue', 'green', 'purple'];
+const lottieFiles = ['https://fonts.gstatic.com/s/e/notoemoji/latest/1f916/lottie.json','https://fonts.gstatic.com/s/e/notoemoji/latest/1f47d/lottie.json', 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/lottie.json','https://fonts.gstatic.com/s/e/notoemoji/latest/1f976/lottie.json', 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f995/lottie.json', 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f608/lottie.json']
 ---
 <div>
-    {themes.map(theme => (
+    {themes.map((theme, index) => (
         <button class="theme-button" data-theme={theme} aria-label="Theme Selecter" title=`${theme.charAt(0).toUpperCase() + theme.slice(1)} Theme` >
-{/*           {theme.charAt(0).toUpperCase() + theme.slice(1)} Theme
- */}        </button>
+            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script><dotlottie-player src={lottieFiles[index]} background="transparent" speed="1" style="width: 50px; height: 50px" direction="1" playMode="normal" hover loop></dotlottie-player>
+        </button>
       ))}
 </div>
 
@@ -18,13 +19,15 @@ const themes = ['light', 'dark', 'red', 'blue', 'green', 'purple'];
         left: 20px;
 
     }
-    .theme-button {
-        padding: 1rem;
-        border-radius: 50%;
-        background-color: chartreuse;
-    }
     .theme-button.active {
-  border: 2px solid orangered;
+        cursor: not-allowed ;
+        
+    }
+    .theme-button.active dotlottie-player {
+        pointer-events: none;
+        filter: grayscale(1); 
+
+     
 }
 
 </style>
