@@ -1,0 +1,64 @@
+---
+import ThemeSelecter from "../components/themeSelecter.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404 PAGE">
+    <main>
+        <ThemeSelecter />
+        <div>
+            <p>This page could not be found</p>
+            <a href="/">go to the homepage</a>
+        </div>
+        </main>
+</Layout>
+
+<style>
+    main {
+        width: 100dvw;
+		height: 100dvh;
+        font-family: monospace;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+        background: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    div {
+        background: var(--bg-cont-main);
+        padding: 2rem;
+        border-radius: 21px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+
+        & p {
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-transform: uppercase;
+        }
+
+        & a {
+            background: var(--bg-btn);
+            padding: 1rem;
+            transition: .1s all ease;
+            color: var(--txt-btn);
+            border: 1px solid var(--bg-btn);
+            border-radius: 100px;
+            text-transform: uppercase;
+
+            &:hover {
+                background-color: var(--bg-btn-hover);
+                color: var(--txt-btn-hover);
+                border: 1px solid var(--bg-btn);
+            }
+
+            &:active {
+                cursor: progress;
+            }
+        }
+    }
+</style>
