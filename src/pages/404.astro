@@ -30,14 +30,13 @@ import Layout from "../layouts/Layout.astro";
         padding: 2rem;
         border-radius: 21px;
         display: flex;
-        flex-wrap: wrap;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 2rem;
 
         & p {
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1rem, 5vw, 3rem);
             text-transform: uppercase;
         }
 
@@ -48,6 +47,7 @@ import Layout from "../layouts/Layout.astro";
             color: var(--txt-btn);
             border: 1px solid var(--bg-btn);
             border-radius: 100px;
+            font-size: clamp(0.3rem, 4vw, 1.5rem);
             text-transform: uppercase;
 
             &:hover {
@@ -61,4 +61,10 @@ import Layout from "../layouts/Layout.astro";
             }
         }
     }
+
+    @media (max-width: 480px) {
+    div {
+       padding: 1rem;
+    }
+}
 </style>
