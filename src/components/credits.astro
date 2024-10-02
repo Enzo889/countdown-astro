@@ -1,0 +1,35 @@
+<footer>
+    <div><p>Enzo Bustamante</p> <p>(<a href="https://x.com/enzodev_" target="_blank">@enzodev_</a>)</p></div>
+    <div><a href="https://github.com/Enzo889/countdown-astro" target="_blank" rel="noopener noreferrer">source</a></div>
+</footer>
+
+
+<style>
+    footer {
+        position: absolute;
+        margin-top: 12rem;
+        bottom: 15px;
+        width: 100%;
+        color: var(--bg-cont-main);
+        display: flex;
+        justify-content: space-around;
+
+        & div {
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
+
+    a {
+        text-decoration: underline;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            filter: opacity(0.657);
+        }
+    }
+
+    div:nth-child(2) {
+        text-transform: capitalize;
+    }
+</style>
