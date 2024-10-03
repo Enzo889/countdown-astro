@@ -163,7 +163,6 @@ import Restore from "./icons/restore.astro";
       };
 
     try {
-      // @ts-ignore
       pipWindow = await documentPictureInPicture.requestWindow(pipOptions);
       } catch (error) {
       console.error("Error al intentar entrar en modo PiP:", error);
