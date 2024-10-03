@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CountdownAstro from '../components/countdown-astro.astro';
+import ThemeSelector from '../components/themeSelecter.astro'
+import Credits from '../components/credits.astro'
+
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<ThemeSelector />
+		<CountdownAstro />
+		<Credits />
+	</main>
+</Layout>
+
+<style>
+	main {
+		background-color: var(--bg-color);
+		width: 100dvw;
+		height: 100dvh;
+		display: flex;
+		position: relative;
+		justify-content: center;
+		align-items: center;
+	}
+
+
+
+	
+</style>
