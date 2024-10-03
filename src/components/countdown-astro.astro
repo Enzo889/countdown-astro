@@ -221,7 +221,7 @@ import Restore from "./icons/restore.astro";
 
   //alarm logic
   let alarmSound: HTMLAudioElement; //se declara el elemento de audio
-  let selectedAlarm: string = "public/audio/alarm-no3.mp3"; //se declara la ruta de la alarma por defecto
+  let selectedAlarm: string = "src/audio/alarm-no3.mp3"; //se declara la ruta de la alarma por defecto
 
   function loadAlarm() {
     if (alarmSound) {
@@ -239,7 +239,7 @@ import Restore from "./icons/restore.astro";
 
   function updateAlarmSound() {
     const alarmSelected = document.getElementById("alarm") as HTMLSelectElement;
-    selectedAlarm = `./public/audio/${alarmSelected.value}.mp3`; //se actualiza la ruta de la alarma
+    selectedAlarm = `src/audio/${alarmSelected.value}.mp3`; //se actualiza la ruta de la alarma
     loadAlarm(); //se carga la nueva alarma
     playAlarm(); //se reproduce la nueva alarma para tener un breve preview
   }
