@@ -5,7 +5,7 @@ const lottieFiles = ['https://fonts.gstatic.com/s/e/notoemoji/latest/1f916/lotti
 <div>
     {themes.map((theme, index) => (
         <button class="theme-button" data-theme={theme} aria-label="Theme Selecter" title=`${theme.charAt(0).toUpperCase() + theme.slice(1)} Theme` >
-            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script><dotlottie-player src={lottieFiles[index]} background="transparent" speed="1" style="width: 50px; height: 50px" direction="1" playMode="normal" hover loop></dotlottie-player>
+            <script is:inline src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script><dotlottie-player src={lottieFiles[index]} background="transparent" speed="1" style="width: 50px; height: 50px" direction="1" playMode="normal" hover loop></dotlottie-player>
         </button>
       ))}
 </div>

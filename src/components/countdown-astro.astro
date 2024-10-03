@@ -162,7 +162,7 @@ import Restore from "./icons/restore.astro";
         copyStyleSheets: true,
       };
 
-      pipWindow = await documentPictureInPicture.requestWindow(pipOptions);
+      pipWindow = await window.documentPictureInPicture.requestWindow(pipOptions);
 
       // Copiar hojas de estilo
       [...document.styleSheets].forEach((styleSheet) => {
