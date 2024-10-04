@@ -43,8 +43,11 @@ const lottieFiles = ['https://fonts.gstatic.com/s/e/notoemoji/latest/1f916/lotti
 @media (max-width: 480px) {
     div {
         flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
         top: 50px;
-        left: 4px;
+        left: 0;
         gap: .7rem;
     }
 
@@ -71,6 +74,7 @@ const lottieFiles = ['https://fonts.gstatic.com/s/e/notoemoji/latest/1f916/lotti
     button.addEventListener('click', () => {
       const selectedTheme = button.getAttribute('data-theme');
       if(selectedTheme) {
+        //@ts-expect-error
         document.startViewTransition(() => {
             document.documentElement.setAttribute('data-theme', selectedTheme);
             localStorage.setItem('theme', selectedTheme);
