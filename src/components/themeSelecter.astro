@@ -74,7 +74,7 @@ const lottieFiles = ['https://fonts.gstatic.com/s/e/notoemoji/latest/1f916/lotti
     button.addEventListener('click', () => {
       const selectedTheme = button.getAttribute('data-theme');
       if(selectedTheme) {
-        //@ts-expect-error
+        // @ts-ignore
         document.startViewTransition(() => {
             document.documentElement.setAttribute('data-theme', selectedTheme);
             localStorage.setItem('theme', selectedTheme);
